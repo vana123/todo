@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import MainPage from "./Page/MainPage";
+import PostsPage from "./Page/PostsPage";
+import { useGetTodosQuery } from "./service/todoService";
+import { setTodo } from "./store/reducers/todos";
+import { useAppDispatch } from "./hooks/reducer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const dispatch = useAppDispatch();
+	const { data, isError, isLoading } = useGetTodosQuery("posts");
+
+	useEffect(() => {
+		if (data) {
+			dispatch(setTodo(data));
+		}
+	}, [data]);
+
+	return (
+		<BrowserRouter>
+			<div className="App">
+				<Header />
+				<Routes>
+					<Route path="/" element={<MainPage />} />
+					<Route path="/posts" element={<PostsPage />} />
+				</Routes>
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;
