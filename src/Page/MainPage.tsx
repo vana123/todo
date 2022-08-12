@@ -1,4 +1,11 @@
-import { Button, TextField, Container } from "@mui/material";
+import {
+	Button,
+	TextField,
+	Container,
+	Paper,
+	Card,
+	CardContent,
+} from "@mui/material";
 import React, { useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -48,52 +55,62 @@ function MainPage() {
 		<Container maxWidth="xs">
 			<div className="MainPage">
 				<div className="FormMain">
-					<h1>FORM</h1>
-					<form onSubmit={handleSubmit(onSubmit)}>
-						<TextField
-							{...register("userId")}
-							value={userId}
-							onChange={(
-								event: React.ChangeEvent<HTMLInputElement>
-							) => {
-								setUserId(Number(event.target.value));
-							}}
-							margin="normal"
-							id="userId"
-							type="number"
-							label="userId"
-							name="userId"
-						/>
-						<TextField
-							{...register("title")}
-							value={title}
-							onChange={(
-								event: React.ChangeEvent<HTMLInputElement>
-							) => {
-								setTitle(event.target.value);
-							}}
-							fullWidth
-							margin="normal"
-							id="title"
-							type="text"
-							label="Title"
-						/>
-						<TextField
-							{...register("body")}
-							value={body}
-							onChange={(
-								event: React.ChangeEvent<HTMLInputElement>
-							) => {
-								setBody(event.target.value);
-							}}
-							fullWidth
-							id="outlined-multiline-static"
-							label="Text"
-							multiline
-							rows={5}
-						/>
-						<Button type="submit">Add</Button>
-					</form>
+					<Card>
+						<CardContent>
+							<form onSubmit={handleSubmit(onSubmit)}>
+								<TextField
+									{...register("userId")}
+									value={userId}
+									onChange={(
+										event: React.ChangeEvent<HTMLInputElement>
+									) => {
+										setUserId(Number(event.target.value));
+									}}
+									margin="normal"
+									id="userId"
+									type="number"
+									label="userId"
+									name="userId"
+								/>
+								<TextField
+									{...register("title")}
+									value={title}
+									onChange={(
+										event: React.ChangeEvent<HTMLInputElement>
+									) => {
+										setTitle(event.target.value);
+									}}
+									fullWidth
+									margin="normal"
+									id="title"
+									type="text"
+									label="Title"
+								/>
+								<TextField
+									{...register("body")}
+									value={body}
+									onChange={(
+										event: React.ChangeEvent<HTMLInputElement>
+									) => {
+										setBody(event.target.value);
+									}}
+									fullWidth
+									id="outlined-multiline-static"
+									label="Text"
+									multiline
+									rows={5}
+								/>
+								<Button
+									type="submit"
+									fullWidth
+									sx={{ marginY: 1 }}
+									variant="contained"
+								>
+									Add
+								</Button>
+							</form>
+						</CardContent>
+					</Card>
 				</div>
 			</div>
 		</Container>

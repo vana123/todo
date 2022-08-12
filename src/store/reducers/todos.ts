@@ -35,8 +35,19 @@ export const todoSlice = createSlice({
 			state.todos = action.payload;
 			state.maxId = action.payload.length;
 		},
+		sortAbc(state, action: PayloadAction<boolean>) {
+			if (action.payload) {
+				state.todos = state.todos.sort((a, b) =>
+					a.title.localeCompare(b.title)
+				);
+			} else {
+				state.todos = state.todos
+					.sort((a, b) => a.title.localeCompare(b.title))
+					.reverse();
+			}
+		},
 	},
 });
 
-export const { setTodo, addTodo, remuveTodo } = todoSlice.actions;
+export const { setTodo, addTodo, remuveTodo, sortAbc } = todoSlice.actions;
 export const todoReducer = todoSlice.reducer;
