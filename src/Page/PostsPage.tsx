@@ -16,7 +16,7 @@ function PostsPage() {
 					variant="outlined"
 					onClick={() => {
 						dispatch(sortAbc(isAbc));
-						setIsAbc(isAbc);
+						setIsAbc(!isAbc);
 					}}
 				>
 					Sort {isAbc ? "a-z" : "z-a"}
